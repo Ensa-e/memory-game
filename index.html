@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ой санамжийн тоглоом</title>
+	<link rel="stylesheet" type="text/css" href="project2.css">
+	<link href='https://fonts.googleapis.com/css?family=Bree+Serif' rel='stylesheet' type='text/css'>
+	
+
+</head>
+<body>
+	<div class="container">
+		<div class="board">
+		<p align="center"><button class="btn-grad" value="Start Game" onclick="startGame()">Start game</button></p>
+		<h3>Left: <span id="time">01:00</span> Spent: <span id="spentt"></span></h3>
+		<div class="imagess">
+		  <img src="back.png" onclick="img0pen(this, 0)">
+		  <img src="back.png" onclick="img0pen(this, 1)">
+		  <img src="back.png" onclick="img0pen(this, 2)">
+		  <img src="back.png" onclick="img0pen(this, 3)">
+		  <img src="back.png" onclick="img0pen(this, 4)">
+		  <img src="back.png" onclick="img0pen(this, 5)">
+		  <img src="back.png" onclick="img0pen(this, 6)">
+		  <img src="back.png" onclick="img0pen(this, 7)">
+		  <img src="back.png" onclick="img0pen(this, 8)">
+		  <img src="back.png" onclick="img0pen(this, 9)">
+		  <img src="back.png" onclick="img0pen(this, 10)">
+		  <img src="back.png" onclick="img0pen(this, 11)">
+		  <img src="back.png" onclick="img0pen(this, 12)">
+		  <img src="back.png" onclick="img0pen(this, 13)">
+		  <img src="back.png" onclick="img0pen(this, 14)">
+		  <img src="back.png" onclick="img0pen(this, 15)">
+		  <div class="over" id="overlay"><h1 >Memory Game</h1></div>
+		  <p ><button onclick="location.reload();" class="btn-grad" style="text-align: center;">Restart game </button></p>
+		</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		images = ['1.png', '2.png', '3.png','4.png', '5.png', '6.png', '7.png', '8.png','1.png', '2.png', '3.png','4.png', '5.png', '6.png', '7.png', '8.png'];
+		click = 0;
+		firstimg = '';
+		firstElem = null;
+		timerCounter = 60;
+		hiddenCounter = 0;
+
+		
+
+		function shuffle(){
+			for(i=0; i<images.length; i++){
+				random =Math.floor( Math.random()*15);
+				temp = images[i]
+				images[i] = images[random];
+				images[random] = temp;
+			}
+			console.log(images);
+		}
+		function  youwon(){
+				alert("Баяр хүргэе. Та хожлоо!");
+				t = timerCounter;
+				tt = 60-t;
+				document.getElementById("spentt").innerHTML = tt;
+
+			}
+
+		function img0pen(elem, n){
+			if(click == 0){
+				elem.src = images[n];
+				click++;
+				firstimg = images[n];
+				firstElem = elem;
+			}
+			else if(firstElem != elem)
+			{
+				elem.src = images[n];
+				setTimeout(function()
+				{
+					if(firstimg == images[n])
+					{
+						elem.style.visibility = "hidden";
+						firstElem.style.visibility = "hidden";
+						hiddenCounter+=2;
+						if (hiddenCounter==16) 
+						{
+							clearInterval(timer);
+							youwon();
+							
+
+						}
+					}
+					else
+					{
+						elem.src = "back.png";
+						firstElem.src = "back.png";
+					}
+					click = 0;
+				} , 200);
+			
+			}
+		}
+		function startGame(){
+			element = document.getElementById("overlay");
+			element.remove("overlay")
+			imgs = document.getElementsByTagName('img');
+			for(i = 0; i<imgs.length; i++){
+				imgs[i].style.visibility = "visible";
+				imgs[i].src = "back.png";
+			}
+			click = 0;
+			shuffle();
+			firstElem = null;
+			timer = null;
+			timerCounter = 60;
+			hiddenCounter = 0;
+			
+			timer = setInterval(function(){ 
+				if(timerCounter == 0){
+					clearInterval(timer);
+					
+					for(i = 0; i<imgs.length; i++){
+					imgs[i].style.visibility = "hidden";
+					}	
+					alert("Уучлаарай, та цагтаа амжсангүй.");
+				}
+				else{
+					timerCounter--;
+					document.getElementById("time").innerHTML = (timerCounter<10) ? ('00:0'+timerCounter) : ("00:"+timerCounter);
+				}
+			}, 1000);
+
+			
+
+		}
+	</script>
+</body>
+</html>

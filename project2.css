@@ -1,0 +1,59 @@
+body{
+	margin-top:150px;
+	background-color: #000;
+}
+
+.board{
+	font-family: "Lucida Console", "Courier New", monospace;
+	width: 600px;
+	margin: 0 auto;
+}
+
+.imagess{
+	position: relative;
+}
+.over{
+	background-color: #000;
+	position: absolute;
+	background: #005C97;  /* fallback for old browsers */
+	background: -webkit-linear-gradient(to right, #363795, #005C97);  /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to right, #363795, #005C97); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+	width: 610px;
+	height: 100%;
+	top: 0;
+	left: 0;
+	color: white;
+}
+
+
+.btn-grad {background-image: linear-gradient(to right, #3D7EAA 0%, #FFE47A  51%, #3D7EAA  100%)}
+.btn-grad {
+margin: 10px;
+padding: 15px 45px;
+text-align: center;
+text-transform: uppercase;
+transition: 0.5s;
+background-size: 200% auto;
+color: white;            
+border-radius: 10px;
+display: block;
+}
+
+.btn-grad:hover {
+background-position: right center; /* change the direction of the change here */
+color: #fff;
+text-decoration: none;
+}
+
+h1{
+	text-align: center;
+	margin-top: 100px;
+}
+img{
+width: 125px;
+height: 125px;
+
+}
+h3{
+	color: white;
+}
